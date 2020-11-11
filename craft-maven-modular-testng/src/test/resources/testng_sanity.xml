@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Sanity" parallel="methods" thread-count="2">
+	<test name="Test for Mobile">
+		<classes>
+      <class name="testscripts.LoginScenario.TestForValidLogin"/>
+      <class name="testscripts.FlightReservationScenario.TestForBookTicketsWithValidCreditCard"/>
+    </classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->

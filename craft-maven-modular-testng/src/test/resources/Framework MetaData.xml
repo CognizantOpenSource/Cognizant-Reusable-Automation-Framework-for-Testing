@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<FrameworkMetaData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Framework>CRAFT_Maven</Framework>
+	<Language>Java</Language>
+	<CurrentVersion>
+		<Number>3.2</Number>
+		<Date>11/30/2018</Date>
+	</CurrentVersion>
+</FrameworkMetaData>

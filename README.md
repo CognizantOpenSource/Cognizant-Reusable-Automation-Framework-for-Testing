@@ -2,6 +2,6 @@
 
     CRAFT is proprietary framework for Automation Needs. There are various flavours of frameworks based on need of project.
     
-### CRAFT with Keyword Driven Framework
-### CRAFT with Modular Driven Framework
-### CRAFT with BDD Framework
+### CRAFT for Keyword Driven Approach
+### CRAFT for Modular Driven Approach
+### CRAFT for BDD Approach

@@ -2,8 +2,6 @@ package com.cognizant.craft;
 
 import java.util.Map;
 
-import org.openqa.selenium.WebDriver;
-
 import com.cognizant.framework.CraftDataTable;
 import com.cognizant.framework.selenium.CraftDriver;
 import com.cognizant.framework.selenium.SeleniumReport;

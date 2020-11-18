@@ -24,7 +24,7 @@ public class Util {
 	 * @return The file separator string
 	 */
 	public static String getFileSeparator() {
-		return System.getProperty("file.separator");
+		return File.separator;
 	}
 
 	/**

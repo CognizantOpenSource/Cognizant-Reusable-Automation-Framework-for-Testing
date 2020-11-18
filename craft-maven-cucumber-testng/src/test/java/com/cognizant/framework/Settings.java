@@ -30,12 +30,15 @@ public class Settings {
 
 	private static Properties loadFromPropertiesFile() {
 		Properties properties = new Properties();
-		String relativePath = new File(System.getProperty("user.dir")).getAbsolutePath();
+		String encryptedPath = WhitelistingPath.cleanStringForFilePath(System.getProperty("user.dir"));
+		String relativePath = new File(encryptedPath).getAbsolutePath();
 		relativePath = relativePath + Util.getFileSeparator() + "src" + Util.getFileSeparator() + "test"
 				+ Util.getFileSeparator() + "resources";
 
 		try {
-			properties.load(new FileInputStream(relativePath + Util.getFileSeparator() + "Global Settings.properties"));
+			String encryptedGlobalPropertiesPath = WhitelistingPath
+					.cleanStringForFilePath(relativePath + Util.getFileSeparator() + "Global Settings.properties");
+			properties.load(new FileInputStream(encryptedGlobalPropertiesPath));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

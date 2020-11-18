@@ -1,7 +1,6 @@
 package com.cognizant.framework;
 
 import java.io.File;
-import java.util.Properties;
 
 /**
  * Singleton class which manages the creation of timestamped result folders for
@@ -26,11 +25,11 @@ public class TimeStamp {
 		if (reportPathWithTimeStamp == null) {
 			synchronized (TimeStamp.class) {
 				if (reportPathWithTimeStamp == null) { // Double-checked locking
-					Properties properties = Settings.getInstance();
-					String timeStamp = "Run_" + Util.getCurrentFormattedTime(properties.getProperty("DateFormatString"))
-							.replace(" ", "_").replace(":", "-");
+					String timeStamp = "Run_" + Util.getCurrentFormattedTime("dd-MMM-yyyy hh:mm:ss a").replace(" ", "_")
+							.replace(":", "-");
 
-					reportPathWithTimeStamp = Util.getResultsPath() + Util.getFileSeparator() + timeStamp;
+					reportPathWithTimeStamp = WhitelistingPath
+							.cleanStringForFilePath(Util.getResultsPath() + Util.getFileSeparator() + timeStamp);
 
 					new File(reportPathWithTimeStamp).mkdirs();
 				}
@@ -45,7 +44,7 @@ public class TimeStamp {
 		if (reportPathScreenShot == null) {
 			synchronized (TimeStamp.class) {
 				if (reportPathScreenShot == null) { // Double-checked locking
-					
+
 					reportPathScreenShot = reportPathWithTimeStamp + Util.getFileSeparator() + "ScreenShots";
 
 					new File(reportPathScreenShot).mkdirs();

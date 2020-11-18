@@ -34,7 +34,7 @@ public class Util {
 	 * @return The file separator string
 	 */
 	public static String getFileSeparator() {
-		return System.getProperty("file.separator");
+		return File.separator;
 	}
 
 	/**
@@ -43,7 +43,8 @@ public class Util {
 	 * @return The AbsolutePath in String
 	 */
 	public static String getAbsolutePath() {
-		String relativePath = new File(System.getProperty("user.dir")).getAbsolutePath();
+		String encryptedPath = WhitelistingPath.cleanStringForFilePath(System.getProperty("user.dir"));
+		String relativePath = new File(encryptedPath).getAbsolutePath();
 		return relativePath;
 	}
 
@@ -53,7 +54,9 @@ public class Util {
 	 * @return The ResultPath in String
 	 */
 	public static String getResultsPath() {
-		File path = new File(Util.getAbsolutePath() + Util.getFileSeparator() + "Results");
+		String encryptedResultPath = WhitelistingPath
+				.cleanStringForFilePath(Util.getAbsolutePath() + Util.getFileSeparator() + "Results");
+		File path = new File(encryptedResultPath);
 		if (!path.isDirectory()) {
 			path.mkdirs();
 		}
@@ -68,8 +71,9 @@ public class Util {
 	 */
 	public static String getCucumberReportPath() {
 
-		File targetPath = new File(Util.getAbsolutePath() + Util.getFileSeparator() + "target" + Util.getFileSeparator()
-				+ "cucumber-report");
+		String encryptedCucumberPath = WhitelistingPath.cleanStringForFilePath(Util.getAbsolutePath()
+				+ Util.getFileSeparator() + "target" + Util.getFileSeparator() + "cucumber-report");
+		File targetPath = new File(encryptedCucumberPath);
 
 		return targetPath.toString();
 	}
@@ -81,21 +85,9 @@ public class Util {
 	 */
 	public static String getExtentReportPath() {
 
-		File targetPath = new File(Util.getAbsolutePath() + Util.getFileSeparator() + "test-output"
-				+ Util.getFileSeparator() + "HtmlReport");
-
-		return targetPath.toString();
-	}
-
-	/**
-	 * Function to get the Allure Report Path
-	 * 
-	 * @return The Allure Report Path in String
-	 */
-	public static String getTargetAllureReportPath() {
-
-		File targetPath = new File(
-				Util.getAbsolutePath() + Util.getFileSeparator() + "target" + Util.getFileSeparator() + "site");
+		String encryptedTargetPath = WhitelistingPath.cleanStringForFilePath(Util.getAbsolutePath()
+				+ Util.getFileSeparator() + "test-output" + Util.getFileSeparator() + "HtmlReport");
+		File targetPath = new File(encryptedTargetPath);
 
 		return targetPath.toString();
 	}
@@ -156,16 +148,21 @@ public class Util {
 
 		if (TimeStamp.reportPathScreenShot == null) {
 
-			File newPath = new File(Util.getAbsolutePath() + Util.getFileSeparator() + "Screenshots");
+			String encryptedPath = WhitelistingPath
+					.cleanStringForFilePath(Util.getAbsolutePath() + Util.getFileSeparator() + "Screenshots");
+			File newPath = new File(encryptedPath);
 			if (!newPath.isDirectory()) {
 				newPath.mkdir();
 			}
-			screenShotPath = new File(
+			String encyptedscreenshot = WhitelistingPath.cleanStringForFilePath(
 					newPath + Util.getFileSeparator() + RandomStringUtils.randomAlphanumeric(16) + ".png");
+			screenShotPath = new File(encyptedscreenshot);
 
 		} else {
-			screenShotPath = new File(TimeStamp.reportPathScreenShot + Util.getFileSeparator()
+			String encyptedscreenshot = WhitelistingPath.cleanStringForFilePath(
+					TimeStamp.reportPathScreenShot + Util.getFileSeparator()
 					+ RandomStringUtils.randomAlphanumeric(16) + ".png");
+			screenShotPath = new File(encyptedscreenshot);
 		}
 
 		try {
@@ -189,13 +186,11 @@ public class Util {
 	}
 
 	/**
-	 * Function to return the current time, formatted as per the
-	 * DateFormatString setting
+	 * Function to return the current time, formatted as per the DateFormatString
+	 * setting
 	 * 
-	 * @param dateFormatString
-	 *            The date format string to be applied
-	 * @return The current time, formatted as per the date format string
-	 *         specified
+	 * @param dateFormatString The date format string to be applied
+	 * @return The current time, formatted as per the date format string specified
 	 * @see #getCurrentTime()
 	 * @see #getFormattedTime(Date, String)
 	 */
@@ -209,10 +204,8 @@ public class Util {
 	 * Function to format the given time variable as specified by the
 	 * DateFormatString setting
 	 * 
-	 * @param time
-	 *            The date/time variable to be formatted
-	 * @param dateFormatString
-	 *            The date format string to be applied
+	 * @param time             The date/time variable to be formatted
+	 * @param dateFormatString The date format string to be applied
 	 * @return The specified date/time, formatted as per the date format string
 	 *         specified
 	 * @see #getCurrentFormattedTime(String)
@@ -226,10 +219,8 @@ public class Util {
 	 * Function to get the time difference between 2 {@link Date} variables in
 	 * minutes/seconds format
 	 * 
-	 * @param startTime
-	 *            The start time
-	 * @param endTime
-	 *            The end time
+	 * @param startTime The start time
+	 * @param endTime   The end time
 	 * @return The time difference in terms of hours, minutes and seconds
 	 */
 	public static String getTimeDifference(Date startTime, Date endTime) {

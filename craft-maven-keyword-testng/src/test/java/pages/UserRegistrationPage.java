@@ -24,8 +24,8 @@ public class UserRegistrationPage extends MasterPage {
 	private final By txtState = By.name("state");
 	private final By txtPostalCode = By.name("postalCode");
 	private final By txtUsername = By.name("email");
-	private final By txtPassword = By.name("password");
-	private final By txtConfirmPassword = By.name("confirmPassword");
+	private final By txtLogin = By.name("password");
+	private final By txtConfirmLogin = By.name("confirmPassword");
 
 	// Buttons
 	private final By btnRegister = By.name("register");
@@ -58,8 +58,8 @@ public class UserRegistrationPage extends MasterPage {
 		driver.findElement(txtPostalCode).sendKeys(dataTable.getData("RegisterUser_Data", "PostalCode"));
 		driver.findElement(txtUsername).sendKeys(dataTable.getData("General_Data", "Username"));
 		String passwordData = dataTable.getData("General_Data", "Password");
-		driver.findElement(txtPassword).sendKeys(passwordData);
-		driver.findElement(txtConfirmPassword).sendKeys(passwordData);
+		driver.findElement(txtLogin).sendKeys(passwordData);
+		driver.findElement(txtConfirmLogin).sendKeys(passwordData);
 		report.updateTestLog("Registration", "Enter user details for registration", Status.DONE);
 		driver.findElement(btnRegister).click();
 

@@ -41,10 +41,14 @@ public class TestNGListener implements ITestListener, ISuiteListener {
 		File sourceExtent = new File(Util.getExtentReportPath());
 		File destination = new File(resultFolder);
 
-		File destCucumPath = new File(destination + Util.getFileSeparator() + "CucumberReport");
+		String encryptedDestPath = WhitelistingPath
+				.cleanStringForFilePath(destination + Util.getFileSeparator() + "CucumberReport");
+		File destCucumPath = new File(encryptedDestPath);
 		destCucumPath.mkdir();
 
-		File destExtentPath = new File(destination + Util.getFileSeparator() + "ExtentReport");
+		String encryptedExtentPath = WhitelistingPath
+				.cleanStringForFilePath(destination + Util.getFileSeparator() + "ExtentReport");
+		File destExtentPath = new File(encryptedExtentPath);
 		destExtentPath.mkdir();
 
 		try {

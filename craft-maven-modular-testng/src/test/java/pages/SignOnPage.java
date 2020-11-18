@@ -16,7 +16,7 @@ public class SignOnPage extends MasterPage {
 
 	// Text boxes
 	private final By txtUsername = By.name("userName");
-	private final By txtPassword = By.name("password");
+	private final By txtLogin = By.name("password");
 
 	// Buttons
 	private final By btnLogin = By.name("login");
@@ -46,7 +46,7 @@ public class SignOnPage extends MasterPage {
 		String passwordData = dataTable.getData("General_Data", "Password");
 
 		driver.findElement(txtUsername).sendKeys(userNameData);
-		driver.findElement(txtPassword).sendKeys(passwordData);
+		driver.findElement(txtLogin).sendKeys(passwordData);
 
 		report.updateTestLog("Login",
 				"Enter login credentials: " + "Username = " + userNameData + ", " + "Password = " + passwordData,

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Run Cucumber TestNG" parallel="tests"
+	data-provider-thread-count="1">
+
+	<listeners>
+		<listener class-name="com.cognizant.framework.TestNGListener" />
+	</listeners>
+
+	<!-- Possible Parameters and Values -->
+	<!-- ExecutionMode = API,LOCAL,GRID,MOBILE -->
+	<!-- ToolName= APPIUM,REMOTEDRIVER -->
+	<!-- MobileExecutionPlatform = ANDROID, IOS, WEB_ANDROID, WEB_IOS -->
+	<!-- BrowserName = CHROME,FIREFOX,INTERNET_EXPLORER,EDGE -->
+	<!-- DeviceName = "Please give the respective deviceName/UDID" OR ManufacturerName 
+		= Apple etc., ModelName = iPhone 7etc., -->
+	<!-- MobileOsVersion ="" -->
+
+
+	<test name="Test for Web Application SKinny Ties">
+		<parameter name="ExecutionMode" value="LOCAL" />
+		<parameter name="BrowserName" value="CHROME" />
+		<classes>
+			<class name="com.cognizant.runners.RunnerWebApp" />
+		</classes>
+	</test>
+</suite>

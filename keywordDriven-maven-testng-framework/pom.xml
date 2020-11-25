@@ -1,0 +1,230 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.cognizant</groupId>
+	<artifactId>keywordDriven-maven-testng</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+
+	<name>Keyword Driven TestNG Automation Framework</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<selenium.standalone>3.141.59</selenium.standalone>
+		<java.client.appium>7.3.0</java.client.appium>
+		<org.testng>7.3.0</org.testng>
+		<source.and.target.JVM.version>11</source.and.target.JVM.version>
+		<org.apache.maven.plugins.maven-compiler-plugin.version>3.8.1</org.apache.maven.plugins.maven-compiler-plugin.version>
+		<org.codehaus.mojo.exec-maven-plugin.version>3.0.0</org.codehaus.mojo.exec-maven-plugin.version>
+		<org.apache.maven.plugins.maven-surefire-plugin.version>3.0.0-M5</org.apache.maven.plugins.maven-surefire-plugin.version>
+		<org.apache.maven.plugins.maven-antrun-plugin.version>1.8</org.apache.maven.plugins.maven-antrun-plugin.version>
+		<org.apache.poi>4.1.2</org.apache.poi>
+		<stax.stax-api>1.0.1</stax.stax-api>
+		<org.apache.xmlbeans.xmlbeans>3.1.0</org.apache.xmlbeans.xmlbeans>
+		<io.github.bonigarcia.webdrivermanager>3.8.1</io.github.bonigarcia.webdrivermanager>
+		<skipTests>false</skipTests>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>runAllocator</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>${org.apache.maven.plugins.maven-antrun-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>generate-sources</id>
+								<phase>generate-sources</phase>
+								<configuration>
+									<tasks>
+										<mkdir dir="./target/Reports" />
+									</tasks>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
+						<configuration>
+							<encoding>UTF-8</encoding>
+							<source>${source.and.target.JVM.version}</source>
+							<target>${source.and.target.JVM.version}</target>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>${org.codehaus.mojo.exec-maven-plugin.version}</version>
+						<executions>
+							<execution>
+								<phase>test</phase>
+								<goals>
+									<goal>java</goal>
+								</goals>
+								<configuration>
+									<mainClass>allocator.Allocator</mainClass>
+									<classpathScope>test</classpathScope>
+									<systemProperties>
+										<systemProperty>
+											<key>ReportPath</key>
+											<value>${project.build.directory}\Reports</value>
+										</systemProperty>
+									</systemProperties>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>runTestNGTests</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<testNG.suiteXmlFile>src/test/resources/testng_sanity.xml</testNG.suiteXmlFile>
+			</properties>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-antrun-plugin</artifactId>
+							<version>${org.apache.maven.plugins.maven-antrun-plugin.version}</version>
+							<executions>
+								<execution>
+									<id>generate-sources</id>
+									<phase>generate-sources</phase>
+									<configuration>
+										<tasks>
+											<mkdir dir="./target/Reports" />
+										</tasks>
+									</configuration>
+									<goals>
+										<goal>run</goal>
+									</goals>
+								</execution>
+							</executions>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-compiler-plugin</artifactId>
+							<version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
+							<configuration>
+								<encoding>UTF-8</encoding>
+								<source>${source.and.target.JVM.version}</source>
+								<target>${source.and.target.JVM.version}</target>
+							</configuration>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-surefire-plugin</artifactId>
+							<version>${org.apache.maven.plugins.maven-surefire-plugin.version}</version>
+							<configuration>
+								<suiteXmlFiles>
+									<suiteXmlFile>${testNG.suiteXmlFile}</suiteXmlFile>
+								</suiteXmlFiles>
+							</configuration>
+							<executions>
+								<execution>
+									<phase>integration-test</phase>
+									<goals>
+										<goal>test</goal>
+									</goals>
+									<configuration>
+										<systemProperties>
+											<systemProperty>
+												<key>ReportPath</key>
+												<value>${project.build.directory}\Reports</value>
+											</systemProperty>
+										</systemProperties>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+	</profiles>
+
+
+	<dependencies>
+		<!-- Selenium Dependency -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.standalone}</version>
+		</dependency>
+		
+		<dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${io.github.bonigarcia.webdrivermanager}</version>
+        </dependency>
+
+		<dependency>
+			<groupId>com.github.detro.ghostdriver</groupId>
+			<artifactId>phantomjsdriver</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+
+		<!-- Appium Dependency -->
+		<dependency>
+			<groupId>io.appium</groupId>
+			<artifactId>java-client</artifactId>
+			<version>${java.client.appium}</version>
+		</dependency>
+
+		<!-- TestNG Dependency -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${org.testng}</version>
+		</dependency>
+
+		<!-- Apache POI Dependency -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${org.apache.poi}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${org.apache.poi}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>${org.apache.poi}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>stax</groupId>
+			<artifactId>stax-api</artifactId>
+			<version>${stax.stax-api}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>${org.apache.xmlbeans.xmlbeans}</version>
+		</dependency>
+
+	</dependencies>
+
+</project>

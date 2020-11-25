@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<FrameworkMetaData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Framework>keywordDriven-maven-testng</Framework>
+	<Language>Java</Language>
+	<CurrentVersion>
+		<Number>1.0</Number>
+		<Date>25/11/2020</Date>
+	</CurrentVersion>
+</FrameworkMetaData>

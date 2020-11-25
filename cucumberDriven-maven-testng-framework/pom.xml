@@ -1,0 +1,130 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>cognizant</groupId>
+	<artifactId>cucumberDriven-maven-testng</artifactId>
+	<version>1.0</version>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<source.and.target.JVM.version>11</source.and.target.JVM.version>
+		<org.apache.maven.plugins.maven-compiler-plugin.version>3.8.1</org.apache.maven.plugins.maven-compiler-plugin.version>
+		<org.apache.maven.plugins.maven-surefire-plugin.version>3.0.0-M4</org.apache.maven.plugins.maven-surefire-plugin.version>
+		<io.cucumber>4.8.1</io.cucumber>
+		<org.testng.testng>7.3.0</org.testng.testng>
+		<org.seleniumhq.selenium.selenium-java>3.141.59</org.seleniumhq.selenium.selenium-java>
+		<com.aventstack.extentreports-cucumber4-adapter>1.0.10</com.aventstack.extentreports-cucumber4-adapter>
+		<io.appium.java-client>7.3.0</io.appium.java-client>
+		<io.github.bonigarcia.webdrivermanager>3.8.1</io.github.bonigarcia.webdrivermanager>
+	</properties>
+
+	<profiles>
+		<!-- to run one of the profiles defined below, simply add -P name_of_the_profile 
+			to mvn command ie.: mvn clean test -P runTestsInIos -->
+		<profile>
+			<id>runTestNGSuite</id>
+			<properties>
+				<testNG.suiteXmlFile>src\test\resources\TestNG_WEB.xml</testNG.suiteXmlFile>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
+						<configuration>
+							<encoding>UTF-8</encoding>
+							<source>${source.and.target.JVM.version}</source>
+							<target>${source.and.target.JVM.version}</target>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${org.apache.maven.plugins.maven-surefire-plugin.version}</version>
+						<configuration>
+							<suiteXmlFiles>
+								<suiteXmlFile>${testNG.suiteXmlFile}</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>test</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<dependencies>
+
+		<!-- Cucumber Dependencies -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-testng</artifactId>
+			<version>${io.cucumber}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${io.cucumber}</version>
+		</dependency>
+
+		<!-- TestNG Dependency -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${org.testng.testng}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Selenium Dependency -->
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${org.seleniumhq.selenium.selenium-java}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>${io.github.bonigarcia.webdrivermanager}</version>
+		</dependency>
+
+		<!-- Appium -->
+
+		<dependency>
+			<groupId>io.appium</groupId>
+			<artifactId>java-client</artifactId>
+			<version>${io.appium.java-client}</version>
+		</dependency>
+
+		<!-- Extent Report Dependency -->
+
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports-cucumber4-adapter</artifactId>
+			<version>${com.aventstack.extentreports-cucumber4-adapter}</version>
+		</dependency>
+
+
+		<!-- Miscellaneous Dependency -->
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
+
+	</dependencies>
+
+</project>

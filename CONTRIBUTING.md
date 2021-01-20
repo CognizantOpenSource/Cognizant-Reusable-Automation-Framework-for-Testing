@@ -14,7 +14,7 @@ For general queries and discussions, please use the Cognizant Intelligent Test S
 
 ### Sign the CLA
 
-Before you contribute, we first ask people to sign a [Contributor License Agreement](https://www.clahub.com/agreements/CognizantQAHub/Cognizant-Intelligent-Test-Scripter) (or CLA). We ask this so that we know that contributors have the right to donate the code.
+Before you contribute, we first ask people to sign a [Contributor License Agreement](https://github.com/CognizantCodeHub/Cognizant-Reusable-Automation-Framework-for-Testing/blob/master/Cognizant%20Technology%20Solutions%20Individual%20Contributor%20License%20Agreement.docx) (or CLA). We ask this so that we know that contributors have the right to donate the code.
 
 When you open your pull request we ask that you indicate that you've signed the CLA. This will reduce the time it takes for us to integrate it.
 

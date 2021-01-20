@@ -1,1 +1,12 @@
-TBD
+
+Date : 20- Jan -2020
+Cognizant Reusable Automation Framework for Testing - Version 1.0
+
+Features:
+
+* Cucumber TestNG based Automation framework
+* Keyword/Excel driven Automation framework 
+* Modular driven Automation Framework
+* Parallel Execution
+* Support for Web Application using selenium, Mobile Application Automation using Appium.
+* HTML Reporting

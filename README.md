@@ -13,7 +13,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting your pull reque
 
 ## Code of Conduct
 
-To provide clarity on what is expected of our members, Cognizant Intelligent Test Scripter has adopted the code of conduct defined by the Contributor Covenant. This document is used across many open source communities and we think it articulates our values well. For more, see the [Code of Conduct](CODE_OF_CONDUCT.md).
+To provide clarity on what is expected of our members, Cognizant Reusable Automation Framework for Testing has adopted the code of conduct defined by the Contributor Covenant. This document is used across many open source communities and we think it articulates our values well. For more, see the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License
 
